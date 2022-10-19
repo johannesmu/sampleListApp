@@ -19,7 +19,12 @@ export default function App() {
   const [ itemName, setItemName ] = useState()
 
   const renderer = ({item}) => (
-    <ListItem name={item.name} />
+    <ListItem 
+      name={item.name} 
+      id={item.id} 
+      completed={item.completed} 
+      update={ itemUpdate } 
+    />
   )
 
   const pressHandler = () => {
@@ -27,6 +32,17 @@ export default function App() {
     let newItem = { name: itemName, id: new Date().getTime(), completed: false }
     setItems( items.concat(newItem) )
     setItemName('')
+  }
+
+  const itemUpdate = ( id ) => {
+    console.log( id )
+    let arr = items
+    arr.forEach( (item) => {
+      if( item.id === id ){
+        item.completed = true
+      }
+    })
+    setItems( [...arr] )
   }
 
 
