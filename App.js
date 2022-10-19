@@ -12,6 +12,7 @@ const ListData = [
 export default function App() {
   // state to keep items
   const [ items, setItems ] = useState(ListData)
+  const [ itemName, setItemName ] = useState()
 
   const renderer = ({item}) => (
     <View>
@@ -21,14 +22,22 @@ export default function App() {
   )
 
   const pressHandler = () => {
-    console.log( 'pressed')
+    // console.log( {name: itemName, id: 4, completed: false} )
+    let newItem = { name: itemName, id: new Date().getTime(), completed: false }
+    setItems( items.concat(newItem) )
+    setItemName('')
   }
 
 
   return (
     <View style={styles.container}>
       <View style={styles.inputGroup} >
-        <TextInput style={styles.input} placeholder='add an item'/>
+        <TextInput 
+          style={styles.input} 
+          placeholder='add an item'
+          value={itemName}
+          onChangeText = { (txtvalue) =>setItemName(txtvalue) }
+        />
         <TouchableHighlight 
           style={styles.button}
           onPress={ pressHandler }
@@ -36,8 +45,9 @@ export default function App() {
           <Text style={ styles.buttonText}>Add</Text>
         </TouchableHighlight>
       </View>
+      <Text>{itemName}</Text>
       <FlatList 
-        data = {ListData}
+        data = {items}
         renderItem = { renderer }
       />
     </View>
