@@ -1,24 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList, TextInput, Button, TouchableHighlight } from 'react-native';
-import Constants from 'expo-constants';
+import Constants from 'expo-constants'
 import { useState, useEffect } from 'react'
 
-const ListData = [
-  { name: "item 1", id: "1", completed: false },
-  { name: "item 2", id: "2", completed: false },
-  { name: "item 3", id: "3", completed: false },
-]
+import { Separator } from './components/Separator'
+import { EmptyList } from './components/EmptyList'
+import { ListItem } from './components/ListItem'
+
+// const ListData = [
+//   { name: "item 1", id: "1", completed: false },
+//   { name: "item 2", id: "2", completed: false },
+//   { name: "item 3", id: "3", completed: false },
+// ]
 
 export default function App() {
   // state to keep items
-  const [ items, setItems ] = useState(ListData)
+  const [ items, setItems ] = useState([])
   const [ itemName, setItemName ] = useState()
 
   const renderer = ({item}) => (
-    <View>
-      <Text>{ item.name } </Text>
-      <Text>id: {item.id} </Text>
-    </View>
+    <ListItem name={item.name} />
   )
 
   const pressHandler = () => {
@@ -45,10 +46,13 @@ export default function App() {
           <Text style={ styles.buttonText}>Add</Text>
         </TouchableHighlight>
       </View>
-      <Text>{itemName}</Text>
       <FlatList 
         data = {items}
         renderItem = { renderer }
+        keyExtractor = { (item) => item.id }
+        ItemSeparatorComponent = {Separator}
+        ListEmptyComponent = { EmptyList }
+        style= { styles.list }
       />
     </View>
   );
@@ -79,5 +83,8 @@ const styles = StyleSheet.create({
     color: '#eeeeee',
     fontSize: 20,
     padding: 10,
-  }
+  },
+  list: {
+    flex: 1,
+  },
 });
