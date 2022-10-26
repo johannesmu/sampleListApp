@@ -10,7 +10,7 @@ export function ListItem( props ) {
                     style={styles.updateButton}
                     onPress={ () => props.update( props.id ) }
                 >
-                    <Text>Update</Text>
+                    <Text>Done</Text>
                 </TouchableHighlight>
                 <TouchableHighlight 
                 style={styles.delButton}
