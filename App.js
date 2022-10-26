@@ -23,7 +23,6 @@ export default function App() {
 
   useEffect( () => {
     if( items.length >= 0 && startup === false ) {
-      // console.log('effect')
       saveItems()
     }
   }, [items] )
@@ -38,12 +37,15 @@ export default function App() {
     />
   )
   // function to read items from storage
-  const readItems = () => {
-    console.log('loading items...')
+  const readItems = async () => {
+    // console.log('loading data...')
+    let data = await AsyncStorage.getItem('ListData')
+    data = ( data !== null ) ? JSON.parse(data) : []
+    setItems( data )
   }
   // function to save items into storage
   const saveItems = async () => {
-    console.log('saving items...')
+    // console.log('saving items...')
     const data = JSON.stringify(items)
     // use asyncstorage to store data
     try {
