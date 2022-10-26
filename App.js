@@ -42,8 +42,16 @@ export default function App() {
     console.log('loading items...')
   }
   // function to save items into storage
-  const saveItems = () => {
+  const saveItems = async () => {
     console.log('saving items...')
+    const data = JSON.stringify(items)
+    // use asyncstorage to store data
+    try {
+      await AsyncStorage.setItem('ListData', data )
+    }
+    catch (error) {
+      console.log( error )
+    }
   }
 
   const pressHandler = () => {
