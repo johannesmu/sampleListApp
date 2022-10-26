@@ -12,6 +12,21 @@ export default function App() {
   // state to keep items
   const [ items, setItems ] = useState([])
   const [ itemName, setItemName ] = useState()
+  const [ startup, setStartup ] = useState(true)
+
+  useEffect( () => {
+    if( startup === true ) {
+      readItems()
+      setStartup( false )
+    }
+  }, [startup])
+
+  useEffect( () => {
+    if( items.length >= 0 && startup === false ) {
+      // console.log('effect')
+      saveItems()
+    }
+  }, [items] )
 
   const renderer = ({item}) => (
     <ListItem 
@@ -23,9 +38,13 @@ export default function App() {
     />
   )
   // function to read items from storage
-  const readItems = () => {}
+  const readItems = () => {
+    console.log('loading items...')
+  }
   // function to save items into storage
-  const saveItems = () => {}
+  const saveItems = () => {
+    console.log('saving items...')
+  }
 
   const pressHandler = () => {
     // console.log( {name: itemName, id: 4, completed: false} )
@@ -35,7 +54,7 @@ export default function App() {
   }
 
   const itemUpdate = ( id ) => {
-    console.log( id )
+    //console.log( id )
     // copy the items array into arr
     let arr = items
     arr.forEach( (item) => {
@@ -49,7 +68,7 @@ export default function App() {
   }
 
   const itemDelete = ( id ) => {
-    console.log( id )
+    //console.log( id )
     //create a copy of items
     let arr = items
     let toKeep = arr.filter( (item) => {
