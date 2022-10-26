@@ -24,6 +24,7 @@ export default function App() {
       id={item.id} 
       completed={item.completed} 
       update={ itemUpdate } 
+      delete={ itemDelete }
     />
   )
 
@@ -36,13 +37,28 @@ export default function App() {
 
   const itemUpdate = ( id ) => {
     console.log( id )
+    // copy the items array into arr
     let arr = items
     arr.forEach( (item) => {
       if( item.id === id ){
         item.completed = true
       }
     })
+    // ...arr converts [ 0, 1, 2, 3] to 0,1,2,3
+    // react will only update a state if you pass a new array
     setItems( [...arr] )
+  }
+
+  const itemDelete = ( id ) => {
+    console.log( id )
+    //create a copy of items
+    let arr = items
+    let toKeep = arr.filter( (item) => {
+      if( item.id !== id ) {
+        return item
+      }
+    })
+    setItems([...toKeep])
   }
 
 
@@ -77,7 +93,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#edf9ff',
     paddingTop: Constants.statusBarHeight,
     justifyContent: 'start',
   },

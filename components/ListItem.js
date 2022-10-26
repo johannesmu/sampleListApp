@@ -5,12 +5,18 @@ export function ListItem( props ) {
             <View style={ styles.listText }>
                 <Text style={ styles.itemName }>{ props.name }</Text>
             </View>
-            <View>
+            <View style={styles.listButtons} >
                 <TouchableHighlight 
                     style={styles.updateButton}
                     onPress={ () => props.update( props.id ) }
                 >
                     <Text>Update</Text>
+                </TouchableHighlight>
+                <TouchableHighlight 
+                style={styles.delButton}
+                onPress={ () => props.delete( props.id ) }
+                >
+                    <Text>Delete</Text>
                 </TouchableHighlight>
             </View>
         </View>
@@ -23,7 +29,8 @@ const styles = StyleSheet.create( {
     },
     item: {
         padding: 10,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        backgroundColor: '#ffffff',
     },
     itemDone: {
         padding: 10,
@@ -34,9 +41,16 @@ const styles = StyleSheet.create( {
         flex: 1,
     },
     listButtons: {
-        backgroundColor: '#dddddd'
+        backgroundColor: '#dddddd',
+        flexDirection: "row",
     },
     updateButton: {
         backgroundColor: '#bbfca4',
+        padding: 10,
+    },
+    delButton: {
+        padding: 10,
+        backgroundColor: '#bbfca4',
     }
+
 } )

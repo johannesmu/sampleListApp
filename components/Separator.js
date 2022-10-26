@@ -8,7 +8,7 @@ export function Separator( props ) {
 
 const styles = StyleSheet.create( {
     separator: {
-        height: 3,
+        height: 1,
         backgroundColor: '#CCCCCC',
     },
 } )
