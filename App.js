@@ -8,12 +8,6 @@ import { Separator } from './components/Separator'
 import { EmptyList } from './components/EmptyList'
 import { ListItem } from './components/ListItem'
 
-// const ListData = [
-//   { name: "item 1", id: "1", completed: false },
-//   { name: "item 2", id: "2", completed: false },
-//   { name: "item 3", id: "3", completed: false },
-// ]
-
 export default function App() {
   // state to keep items
   const [ items, setItems ] = useState([])
@@ -28,6 +22,10 @@ export default function App() {
       delete={ itemDelete }
     />
   )
+  // function to read items from storage
+  const readItems = () => {}
+  // function to save items into storage
+  const saveItems = () => {}
 
   const pressHandler = () => {
     // console.log( {name: itemName, id: 4, completed: false} )
