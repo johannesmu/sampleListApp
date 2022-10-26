@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList, TextInput, Button, TouchableHighlight } from 'react-native';
 import Constants from 'expo-constants'
 import { useState, useEffect } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Separator } from './components/Separator'
 import { EmptyList } from './components/EmptyList'
