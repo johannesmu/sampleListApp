@@ -37,6 +37,22 @@ export default function App() {
       delete={ itemDelete }
     />
   )
+  // function to sort items in chronological order
+  const sortItems = () => {
+    let data = items
+    data.sort( ( item1, item2 ) => {
+      if( item1.id > item2.id ) {
+        return 1
+      }
+      if( item1.id < item2.id ) {
+        return -1
+      }
+      else {
+        return 0
+      }
+    })
+    setItems([...data])
+  }
   // function to read items from storage
   const readItems = async () => {
     // console.log('loading data...')
@@ -60,6 +76,7 @@ export default function App() {
   const pressHandler = () => {
     // console.log( {name: itemName, id: 4, completed: false} )
     let newItem = { name: itemName, id: new Date().getTime(), completed: false }
+    // sort the items chronologically
     setItems( items.concat(newItem) )
     setItemName('')
   }
