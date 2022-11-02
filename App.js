@@ -8,6 +8,7 @@ import { Separator } from './components/Separator'
 import { EmptyList } from './components/EmptyList'
 import { ListItem } from './components/ListItem'
 
+// This is my experiment
 export default function App() {
   // state to keep items
   const [ items, setItems ] = useState([])
